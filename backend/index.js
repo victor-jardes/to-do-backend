@@ -11,5 +11,6 @@ const { PORT } = process.env;
 
 app.get('/', (req, res) => res.send('Hello World!'));
 app.use(routes.getAllTaskRouter);
+app.use(routes.insertTaskRouter);
 
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
