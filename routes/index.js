@@ -1,5 +1,5 @@
 const getAllTaskRouter = require('./getAllTaskRouter');
-const insertTaskRouter = require('./insertTaskRouter')
+const insertTaskRouter = require('./insertTaskRouter');
 
 module.exports = {
   getAllTaskRouter,
