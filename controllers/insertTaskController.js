@@ -7,7 +7,6 @@ const insertTaskController = async (req, res) => {
 
     return res.status(200).json({ message: 'ok' });
   } catch (error) {
-    console.log(error.message)
     throw new Error('error in controller');
   }
 };
