@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon index.js",
     "commit": "cz",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "test": "mocha test/unit/**/*.js --exit"
   },
   "keywords": [],
   "author": "",
@@ -22,7 +23,7 @@
     "chai": "^4.3.6",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.18.0",
+    "eslint": "^8.19.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
     "mocha": "^10.0.0",
