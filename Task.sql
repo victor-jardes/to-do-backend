@@ -11,11 +11,11 @@ CREATE TABLE Task.To_do(
 INSERT INTO
   Task.To_do (`work`, `status`)
 VALUES 
-  ("tem que praticar o front", "feito!");
+  ("tirar o lixo", "feito!");
 
 INSERT INTO
   Task.To_do (`work`, `status`)
 VALUES 
-  ("ja fez o DUO hoje?", "pendente...");
+  ("praticar o ingles com DUO", "pendente")
   
  
