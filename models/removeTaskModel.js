@@ -7,7 +7,7 @@ const removeTaskModel = async (id) => {
       [id],
     );
   } catch (error) {
-    throw new Error('Erro when delete task model');
+    throw new Error('error when delete task model');
   }
 };
 

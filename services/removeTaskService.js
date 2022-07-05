@@ -4,7 +4,7 @@ const removeTaskService = async (id) => {
   try {
     await removeTaskModel(id);
   } catch (error) {
-    throw new Error('Error when calling model in service');
+    throw new Error('error when calling model in service');
   }
 };
 

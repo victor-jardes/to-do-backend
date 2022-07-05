@@ -6,7 +6,7 @@ const removeTaskController = async (req, res) => {
     await removeTaskService(id);
     res.status(204).end();
   } catch (error) {
-    throw new Error('erro whe calling service in Controller');
+    throw new Error('error whe calling service in Controller');
   }
 };
 
