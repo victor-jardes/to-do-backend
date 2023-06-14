@@ -13,16 +13,16 @@ export class TodoController {
 
   @Post('create')
   @HttpCode(200)
-  async create(@Body() createTodoDto: CreateTodoDto): Promise<ITodo> {
-    await allTodos.push(createTodoDto);
+  async create(@Body() createTodoDto: CreateTodoDto): Promise<ITodo[]> {
+    await allTodos.push({ ...createTodoDto, isFinished: false });
 
-    const result = {
-      id: createTodoDto.id,
-      isFinished: createTodoDto.isFinished,
-      description: createTodoDto.description,
-    };
-
-    return result;
+    return [
+      {
+        id: createTodoDto.id,
+        isFinished: false,
+        description: createTodoDto.description,
+      },
+    ] as ITodo[];
   }
 
   @Get('serch')
