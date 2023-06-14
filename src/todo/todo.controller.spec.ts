@@ -59,4 +59,33 @@ describe('TodoControler', () => {
       expect(await todoController.findAll()[1]).toEqual(secondTodoCreated);
     });
   });
+
+  describe('`getUnicItem`: search for a particular task', () => {
+    const todo: CreateTodoDto[] = [
+      {
+        id: '1',
+        description: 'wash to car',
+        isFinished: false,
+      },
+      {
+        id: '2',
+        description: 'study English',
+        isFinished: true,
+      },
+    ];
+
+    it('should be able find my particular task', async () => {
+      const result = todo;
+
+      const firstItem = result[0];
+      const secondItem = result[1];
+
+      result.forEach((item) => {
+        todoController.create(item);
+      });
+
+      expect(await todoController.getUnicItem('2')).toContainEqual(secondItem);
+      expect(await todoController.getUnicItem('1')).toContainEqual(firstItem);
+    });
+  });
 });
