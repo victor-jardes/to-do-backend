@@ -2,7 +2,7 @@ import { Test } from '@nestjs/testing';
 import { TodoController } from './todo.controller';
 import { CreateTodoDto } from './dtos/createTodo.dto';
 
-describe.only('TodoControler', () => {
+describe('TodoControler', () => {
   let todoController: TodoController;
 
   beforeEach(async () => {
@@ -19,14 +19,13 @@ describe.only('TodoControler', () => {
 
   describe('create', () => {
     const todo: CreateTodoDto = {
-      id: '4',
+      id: '1',
       description: 'wash to car',
       isFinished: false,
     };
 
     it('should be able create todo', async () => {
-      const firstTodoCreated = todo;
-      const result = firstTodoCreated;
+      const result = todo;
 
       expect(await todoController.create(todo)).toEqual(result);
     });
@@ -46,12 +45,11 @@ describe.only('TodoControler', () => {
       },
     ];
 
-    it('shoud return your task', async () => {
+    it('shoud return all tasks created', async () => {
       todo.forEach((task) => {
         todoController.create(task);
       });
 
-      console.log(todoController.findAll());
       expect(await todoController.findAll()).toEqual(todo);
 
       const firstTodoCreated = todoController.findAll()[0];
