@@ -1,4 +1,12 @@
-import { Body, Controller, Get, HttpCode, Post, Delete } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  Post,
+  Delete,
+  Param,
+} from '@nestjs/common';
 import { CreateTodoDto } from './dtos/createTodo.dto';
 import { ITodo } from './dtos/todo.dto';
 
@@ -25,8 +33,8 @@ export class TodoController {
     ] as ITodo[];
   }
 
-  @Get('serch')
-  async getUnicItem(id: string): Promise<ITodo[]> {
+  @Get('search/:id')
+  async getUnicItem(@Param('id') id: string): Promise<ITodo[]> {
     const getUnicTask = await allTodos.filter((task) => task.id === id);
     return getUnicTask;
   }
