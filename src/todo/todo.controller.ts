@@ -8,7 +8,7 @@ import {
   Param,
 } from '@nestjs/common';
 import { CreateTodoDto } from './dtos/createTodo.dto';
-import { ITodo } from './dtos/todo.dto';
+import { ITodo } from './interfaces/ITodo.interface';
 
 let allTodos: ITodo[] = [];
 

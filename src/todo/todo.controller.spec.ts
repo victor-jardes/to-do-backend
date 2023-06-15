@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 import { TodoController } from './todo.controller';
 import { CreateTodoDto } from './dtos/createTodo.dto';
-import { ITodo } from './dtos/todo.dto';
+import { ITodo } from './interfaces/ITodo.interface';
 
 describe.only('TodoControler', () => {
   let todoController: TodoController;
