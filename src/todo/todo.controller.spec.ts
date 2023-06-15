@@ -1,9 +1,9 @@
 import { Test } from '@nestjs/testing';
 import { TodoController } from './todo.controller';
 import { CreateTodoDto } from './dtos/createTodo.dto';
-import { ITodo } from './interfaces/ITodo.interface';
+import { ITask } from './interfaces/ITask.interface';
 
-describe.only('TodoControler', () => {
+describe('TodoControler', () => {
   let todoController: TodoController;
 
   beforeEach(async () => {
@@ -18,7 +18,7 @@ describe.only('TodoControler', () => {
     todoController.clear();
   });
 
-  const todo: CreateTodoDto[] = [
+  const taskList: CreateTodoDto[] = [
     {
       id: '1',
       description: 'wash to car',
@@ -30,11 +30,11 @@ describe.only('TodoControler', () => {
   ];
 
   describe('create', () => {
-    it('should be able create todo', async () => {
-      const result = { ...todo[0], isFinished: false };
-      const { description, id, isFinished }: ITodo = result;
+    it('should be able create task', async () => {
+      const result = { ...taskList[0], isFinished: false };
+      const { description, id, isFinished }: ITask = result;
 
-      expect(await todoController.create(todo[0])).toContainEqual({
+      expect(await todoController.create(taskList[0])).toContainEqual({
         description,
         id,
         isFinished,
@@ -42,44 +42,44 @@ describe.only('TodoControler', () => {
     });
   });
 
-  describe.only('findAll', () => {
+  describe('findAll', () => {
     it('shoud return all tasks created', async () => {
-      todo.forEach((task) => {
+      taskList.forEach((task) => {
         todoController.create(task);
       });
 
-      const result: ITodo[] = [
+      const result: ITask[] = [
         {
-          ...todo[0],
+          ...taskList[0],
           isFinished: false,
         },
-        { ...todo[1], isFinished: false },
+        { ...taskList[1], isFinished: false },
       ];
 
       expect(await todoController.findAll()).toMatchObject(result);
 
-      const firstTodoCreated = todoController.findAll()[0];
-      const secondTodoCreated = todoController.findAll()[1];
+      const firstTaskCreated = todoController.findAll()[0];
+      const secondTaskCreated = todoController.findAll()[1];
 
-      expect(await todoController.findAll()[0]).toEqual(firstTodoCreated);
-      expect(await todoController.findAll()[1]).toEqual(secondTodoCreated);
+      expect(await todoController.findAll()[0]).toEqual(firstTaskCreated);
+      expect(await todoController.findAll()[1]).toEqual(secondTaskCreated);
     });
   });
 
   describe('`getUnicItem`: search for a particular task', () => {
     it('should be able find my particular task', async () => {
-      const result: ITodo[] = [
+      const result: ITask[] = [
         {
-          ...todo[0],
+          ...taskList[0],
           isFinished: false,
         },
-        { ...todo[1], isFinished: false },
+        { ...taskList[1], isFinished: false },
       ];
 
       const firstItem = result[0];
       const secondItem = result[1];
 
-      todo.forEach((item) => {
+      taskList.forEach((item) => {
         todoController.create(item);
       });
 
