@@ -8,20 +8,20 @@ import {
   Param,
 } from '@nestjs/common';
 import { CreateTodoDto } from './dtos/createTodo.dto';
-import { ITodo } from './interfaces/ITodo.interface';
+import { ITask } from './interfaces/ITask.interface';
 
-let allTodos: ITodo[] = [];
+let allTodos: ITask[] = [];
 
 @Controller('todo')
 export class TodoController {
   @Get('findAll')
-  findAll(): ITodo[] {
+  findAll(): ITask[] {
     return allTodos;
   }
 
   @Post('create')
   @HttpCode(200)
-  async create(@Body() createTodoDto: CreateTodoDto): Promise<ITodo[]> {
+  async create(@Body() createTodoDto: CreateTodoDto): Promise<ITask[]> {
     await allTodos.push({ ...createTodoDto, isFinished: false });
 
     return [
@@ -30,17 +30,17 @@ export class TodoController {
         isFinished: false,
         description: createTodoDto.description,
       },
-    ] as ITodo[];
+    ] as ITask[];
   }
 
   @Get('search/:id')
-  async getUnicItem(@Param('id') id: string): Promise<ITodo[]> {
+  async getUnicItem(@Param('id') id: string): Promise<ITask[]> {
     const getUnicTask = await allTodos.filter((task) => task.id === id);
     return getUnicTask;
   }
 
   @Delete('clear')
-  async clear(): Promise<ITodo[]> {
+  async clear(): Promise<ITask[]> {
     allTodos = [];
     return allTodos;
   }
