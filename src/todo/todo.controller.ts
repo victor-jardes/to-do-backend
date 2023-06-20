@@ -21,16 +21,16 @@ export class TodoController {
 
   @Post('create')
   @HttpCode(200)
-  async create(@Body() createTodoDto: CreateTodoDto): Promise<ITask[]> {
+  async create(@Body() createTodoDto: CreateTodoDto): Promise<ITask> {
     await allTodos.push({ ...createTodoDto, isFinished: false });
 
-    return [
-      {
-        id: createTodoDto.id,
-        isFinished: false,
-        description: createTodoDto.description,
-      },
-    ] as ITask[];
+    const result: ITask = {
+      id: createTodoDto.id,
+      isFinished: false,
+      description: createTodoDto.description,
+    };
+
+    return result;
   }
 
   @Get('search/:id')
