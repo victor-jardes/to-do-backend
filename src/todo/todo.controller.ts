@@ -22,12 +22,14 @@ export class TodoController {
   @Post('create')
   @HttpCode(200)
   async create(@Body() createTodoDto: CreateTodoDto): Promise<ITask> {
-    await allTodos.push({ ...createTodoDto, isFinished: false });
+    const { id, description, isFinished } = createTodoDto;
+
+    await allTodos.push({ ...createTodoDto });
 
     const result: ITask = {
-      id: createTodoDto.id,
-      isFinished: false,
-      description: createTodoDto.description,
+      id,
+      description,
+      isFinished,
     };
 
     return result;
@@ -43,5 +45,27 @@ export class TodoController {
   async clear(): Promise<ITask[]> {
     allTodos = [];
     return allTodos;
+  }
+
+  @Post('/finish/:id')
+  async finishedTask(@Param('id') id: string): Promise<string> {
+    try {
+      const findTask = allTodos.findIndex(({ id: taskId }) => taskId === id);
+      allTodos[findTask].isFinished = !allTodos[findTask].isFinished;
+      return 'OK';
+    } catch (error: any) {
+      return 'fail in change `isFinished` value';
+    }
+  }
+
+  @Delete('/delete/:id')
+  async deleteTask(@Param('id') id: string) {
+    try {
+      const findTask = allTodos.findIndex(({ id: taskId }) => taskId === id);
+      allTodos.splice(findTask, 1);
+      return 'OK';
+    } catch (error) {
+      return 'error for delete task';
+    }
   }
 }
