@@ -22,10 +22,12 @@ describe('TodoControler', () => {
     {
       id: '1',
       description: 'wash to car',
+      isFinished: false,
     },
     {
       id: '2',
       description: 'study English',
+      isFinished: false,
     },
   ];
 
